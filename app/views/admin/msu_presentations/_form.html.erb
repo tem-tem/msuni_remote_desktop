@@ -1,0 +1,7 @@
+
+<%= form_for [:admin, @lecture, @presentation] do |f| %>
+  <%= f.file_field :pdf,
+      accept: ".pdf",
+      class: "my-3",
+      onchange: "this.form.submit()" %>
+<% end %>

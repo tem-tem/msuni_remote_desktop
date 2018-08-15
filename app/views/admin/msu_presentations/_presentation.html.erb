@@ -1,0 +1,43 @@
+<div class="card" style="overflow:hidden;">
+
+  <div class="m-0 p-2 py-3 border-bottom" style="text-align: center;">
+    <h6>
+      <%= presentation.title %>
+    </h6>
+    <small>
+      <%= presentation.msu_lecture.title %>
+    </small>
+  </div>
+
+  <div class="d-flex">
+    <%= link_to pdfjs.full_path(file: presentation.pdf.url),
+    class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
+    target: "_blank" do %>
+      <%= octicon "link-external",
+      height: 16,
+      class: "m-auto",
+        "aria-label": "Открыть" %>
+    <% end %>
+
+    <%= link_to presentation.pdf.url,
+      class: "p-3 w-100 border-right card-botton card-botton-primary justify-content-between",
+      download: "#{presentation.pdf.url}",
+      target: "_blank" do %>
+        <%= octicon "arrow-down",
+        height: 20,
+        class: "m-auto",
+          "aria-label": "Скачать" %>
+    <% end %>
+
+    <%= link_to [:admin, presentation.msu_lecture, presentation],
+        class: "p-3 w-100 card-botton card-botton-danger justify-content-between",
+        method: :delete,
+        data: { confirm: 'Are you sure?' } do %>
+      <%= octicon "trashcan",
+      height: 16,
+      class: "m-auto",
+        "aria-label": "Удалить" %>
+      <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,34 @@
+
+<div class="row border-bottom discipline align-middle" id="discipline-<%= discipline.id %>">
+  <%= link_to [:admin, discipline],
+              class: "col-10 py-3",
+              id: "discipline-#{ discipline.id }-link" do %>
+    <p id="discipline-<%= discipline.id %>-name">
+      <%= discipline.title %>
+    </p>
+  <% end %>
+
+  <%= link_to [:edit, :admin, discipline],
+      remote: true,
+      class: "col-2 card-botton card-botton-primary" do %>
+
+    <%= octicon "pencil",
+        :height => 18,
+        class: "button-icon mx-auto",
+        "aria-label": "Редактировать дисциплину",
+        "data-toggle": "modal",
+        "data-target": "#newDisciplineModal"  %>
+
+  <% end %>
+
+    <!-- <div class="row">
+
+      <div class="col-6">
+        <%= link_to [:admin, discipline], method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+          <button type="button" class="btn btn-outline-danger btn-block">Удалить</button>
+        <% end %>
+      </div>
+
+    </div> -->
+
+</div>

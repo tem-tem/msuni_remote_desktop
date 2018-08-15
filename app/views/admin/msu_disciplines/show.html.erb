@@ -1,0 +1,24 @@
+<% content_for :title do %>
+  <title id="discipline-tab-title"><%= @discipline.title %> | MSUniversity</title>
+<% end %>
+
+<div class="row">
+
+  <div class="col-sm-4 col-md-4 col-lg-3 border-right discipline-menu" style="max-width: 300px;">
+    <%= render partial: '/admin/msu_disciplines/disciplines_menu' %>
+  </div>
+
+  <div class="col p-0" id="discipline-content" style="background-color: white;">
+    <%= render partial: '/admin/msu_disciplines/msu_discipline',
+          locals: {discipline: @discipline} %>
+  </div>
+</div>
+
+<!-- <div id="new_discipline_form"></div> -->
+
+<%= content_for :page_scripts do %>
+  <script>
+    $(".discipline").removeClass("discipline-active");
+    $("#discipline-<%= @discipline.id %>").addClass("discipline-active");
+  </script>
+<% end %>
