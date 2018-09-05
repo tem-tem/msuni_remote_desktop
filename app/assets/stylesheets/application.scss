@@ -55,7 +55,16 @@ a:hover {
   text-decoration: none;
   color: #000f14;
 }
-
+th, td {
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 20px 15px;
+}
+table {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  width: 100%;
+}
 
 // left menu start
 
@@ -355,9 +364,12 @@ input:checked + .slider:before {
 
 pre{
   margin-top: 1rem;
-  border-left: 3px solid $primary;
-  margin-left: 1rem;
-  padding-left: 1rem;
+  padding-left: 2rem;
+  background: #ced5de;
+  border-radius: 10px;
+}
+code {
+  color: #1d4691  !important;
 }
 
 
