@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-end"
+<div class="d-flex justify-content-end mt-3"
     role="group"
     aria-label="Videos navigation">
   <button class="btn btn-sm btn-outline-primary dropdown-toggle"
@@ -9,29 +9,49 @@
     Фильтр
   </button>
 
-  <div class="dropdown-menu dropdown-menu-left"
+  <div class="dropdown-menu dropdown-menu-right"
       aria-labelledby="dropdownMenu2"
       style="box-shadow: 0 10px 50px rgba(0,0,0,0.2)">
     <h6 class="dropdown-header border-bottom mb-2">Выберите категорию</h6>
     <% ftps = files.map{|f| f.filetype } %>
     <% ftps.uniq.each do |f| %>
-      <div class="dropdown-item filetype-filter" value=".<%= f %>">
+      <div class="dropdown-item filetype-filter d-flex align-items-center" value="<%= f %>">
+        <div class="filetype-color mr-2" id="<%= f %>-color"></div>
         <%= f %>
       </div>
     <% end %>
     <div class="dropdown-divider"></div>
-    <div class="dropdown-item filetype-filter" value=".file-with-filetype">
+    <div class="dropdown-item filetype-filter" value="file-with-filetype">
       Убрать фильтр
     </div>
   </div>
 </div>
 
+
 <% content_for :page_scripts do %>
   <script>
+    $( document ).on('turbolinks:load', function() {
+      var count = $(".filetype-filter").length;
+      $(".filetype-filter").each(function( i ) {
+        if ( i < (count-1) ) {
+          var color = materialColor(),
+              elem = "#" + $(this).attr("value") + "-color",
+              elems = "." + $(this).attr("value") + "-color";
+          console.log( $(elem) );
+          $(elem).css("background-color", color);
+          $(elems).css("background-color", color);
+        }
+      });
+    });
     $(".filetype-filter").on("click", function(e) {
       t = $(e.target).attr("value");
-      $('.file-with-filetype').css("display", "none");
-      $(t).css("display", "flex");
+      if (t == 'file-with-filetype'){
+        $("#dropdownMenu2").text('Фильтр');
+      } else {
+        $("#dropdownMenu2").text('Фильтр: '+ t);
+      };
+      $('.file-with-filetype').hide();
+      $( '.' +  t).show();
     });
   </script>
 <% end %>

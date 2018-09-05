@@ -1,83 +1,86 @@
-<div class="my-4 lecture file-with-filetype <%= msu_file.filetype %>"
-      style="display: flex; justify-content: space-between;">
-  <div class="d-flex w-75">
-    <div class="border-right p-3">
-      <span class="badge badge-info">
-        <%= index %>
-      </span>
-    </div>
-
-    <div class="p-3 d-flex flex-column justify-content-between w-100">
-      <h5 class="title mb-3">
-        <%= msu_file.name %>
-      </h5>
-      <small>
-        <%= msu_file.filetype %>
-      </small>
-      <div>
-        <% if msu_file.file? %>
+<div class="file-with-filetype <%= msu_file.filetype %>">
+  <div class="my-4 lecture"
+        style="display: flex; justify-content: space-between;">
+    <div class="d-flex w-75">
+      <div class="border-right p-3">
+        <span class="badge badge-info">
+          <%= index %>
+        </span>
+      </div>
+  
+      <div class="p-3 d-flex flex-column justify-content-between w-100">
+        <h5 class="title mb-3">
+          <%= msu_file.name %>
+        </h5>
+        <small>
+          <%= msu_file.filetype %>
+        </small>
+        <div>
+          <% if msu_file.file? %>
+            <div class="text-secondary">
+              Файл: <%= msu_file.file_identifier %>
+            </div>
+          <% end %>
           <div class="text-secondary">
-            Файл: <%= msu_file.file_identifier %>
+            Дата добавления: <%= msu_file.created_at.strftime("%A, %d, %B, %Y") %>
           </div>
-        <% end %>
-        <div class="text-secondary">
-          Дата добавления: <%= msu_file.created_at.strftime("%A, %d, %B, %Y") %>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="border-left d-flex flex-column w-25">
-    <%= link_to [:edit, :admin, msu_file.msu_discipline, msu_file],
-        remote: true,
-        class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
-        <%= octicon "pencil",
-        height: 20,
-        width: 20,
-        class: "button-icon mr-3 my-auto",
-          "aria-label": "Редактировать" %>
-        <small class="my-auto">Редактировать</small>
-    <% end %>
-
-    <% if msu_file.file? %>
-      <%= link_to msu_file.file.url,
+  
+    <div class="border-left d-flex flex-column w-25">
+      <%= link_to [:edit, :admin, msu_file.msu_discipline, msu_file],
+          remote: true,
           class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
-          <%= octicon "arrow-down",
-          width: 20,
+          <%= octicon "pencil",
           height: 20,
+          width: 20,
           class: "button-icon mr-3 my-auto",
-            "aria-label": "Скачать" %>
-          <small class="my-auto">Скачать</small>
+            "aria-label": "Редактировать" %>
+          <small class="my-auto">Редактировать</small>
       <% end %>
-    <% end %>
-
-    <% if msu_file.link? %>
-      <a href="<%= msu_file.link %>" target="_blank"
-          data-toggle= "tooltip"
-          data-placement = "left"
-          title = "<%= msu_file.link %>"
-          class="h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start">
-          <%= octicon "link-external",
-          width: 20,
-          height: 20,
-          class: "button-icon mr-3 my-auto",
-            "aria-label": "Открыть" %>
-          <small class="my-auto">Открыть ссылку</small>
-      </a>
-    <% end %>
-
-    <%= link_to [:admin, msu_file.msu_discipline, msu_file],
-        method: :delete,
-        class: "h-100 p-2 d-flex align-items-middle card-btn-row card-btn-row-danger justify-content-start",
-        data: { confirm: 'Are you sure?' },
-        remote: true do %>
-          <%= octicon "trashcan",
-          width: 20,
-          height: 20,
-          class: "button-icon mr-3 my-auto",
-            "aria-label": "Открыть" %>
-          <small class="my-auto">Удалить</small>
-    <% end %>
-
+  
+      <% if msu_file.file? %>
+        <%= link_to msu_file.file.url,
+            class: "h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start" do %>
+            <%= octicon "arrow-down",
+            width: 20,
+            height: 20,
+            class: "button-icon mr-3 my-auto",
+              "aria-label": "Скачать" %>
+            <small class="my-auto">Скачать</small>
+        <% end %>
+      <% end %>
+  
+      <% if msu_file.link? %>
+        <a href="<%= msu_file.link %>" target="_blank"
+            data-toggle= "tooltip"
+            data-placement = "left"
+            title = "<%= msu_file.link %>"
+            class="h-100 p-2 border-bottom card-btn-row card-btn-row-primary justify-content-start">
+            <%= octicon "link-external",
+            width: 20,
+            height: 20,
+            class: "button-icon mr-3 my-auto",
+              "aria-label": "Открыть" %>
+            <small class="my-auto">Открыть ссылку</small>
+        </a>
+      <% end %>
+  
+      <%= link_to [:admin, msu_file.msu_discipline, msu_file],
+          method: :delete,
+          class: "h-100 p-2 d-flex align-items-middle card-btn-row card-btn-row-danger justify-content-start",
+          data: { confirm: 'Are you sure?' },
+          remote: true do %>
+            <%= octicon "trashcan",
+            width: 20,
+            height: 20,
+            class: "button-icon mr-3 my-auto",
+              "aria-label": "Открыть" %>
+            <small class="my-auto">Удалить</small>
+      <% end %>
+  
+    </div>
   </div>
+  
 </div>

@@ -6,7 +6,7 @@
 
 <% content_for :menu do %>
   <%= link_to d_path(@lecture.msu_discipline.id),
-      class: "go-back" do %>
+      class: "go-back to-discipline" do %>
     <%= octicon "chevron-left",
           style: 'margin-right: 5px',
           width: 10,
@@ -77,24 +77,7 @@
 
 
 <script>
-  $(document).ready(function(){
-  //   $('#lecture_content').html(marked("<%= j @lecture.content %>"));
-
-    var text = "<%= j @lecture.content %>",
-        target = document.getElementById('lecture_content'),
-        converter = new showdown.Converter({
-          headerLevelStart: 3,
-          simpleLineBreaks: true
-        }),
-        html = converter.makeHtml(text);
-
-    target.innerHTML = html;
-
-    $('p').each(function(){
-      var alt = $(this).children('img').attr('alt');
-      if (alt) {
-        $(this).append("<div class='img-caption'>" + alt + "</div>");
-      }
-    });
+  $( document ).on('turbolinks:load', function() {
+    $('#lecture_content').html(marked("<%= j @lecture.content.html_safe %>"));
   });
 </script>

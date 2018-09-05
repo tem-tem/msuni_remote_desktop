@@ -575,17 +575,25 @@ pre{
 
 // BOOKS CLIENTS START
 
+.filetype-color {
+  height: 16px;
+  width: 16px;
+  border-radius: 60px;
+  background-color: #e8e8e8;
+}
+
 .book-title {
   margin-bottom: 10px;
 }
-
-
+.filetype-color-in-file{
+    width: 16px;
+    height: 16px;
+    border-radius: 30px;
+}
 .file-category {
-  padding-left: 2em;
-  border: 1px solid #dee2e6;
-  color: #6b6b6b;
-  border-radius: 20px;
-  padding: 0 10px;
+  color: #a4a4a4;
+  display: flex;
+  align-items: center;
 }
 
 .book-footer {
