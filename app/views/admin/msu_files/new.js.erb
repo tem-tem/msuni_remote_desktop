@@ -2,9 +2,9 @@ $('#itemModal').modal();
 $('#itemModal').on('shown.bs.modal', function() {
   $('#msu_file_name').focus();
 });
-$('#itemModalLabel').html('Новая книга');
+$('#itemModalLabel').html('Новый файл');
 $('#itemModalBody')
-  .html('<%= j render "admin/msu_files/#{params[:filetype]}_form" %>');
+  .html('<%= j render "admin/msu_files/form" %>');
 
 var error = "<%= j flash[:danger] %>",
     errorHolder = $("#errors");
@@ -14,4 +14,4 @@ if (error){
   errorHolder.addClass("text-danger mb-3");
   errorHolder.html(error);
   errorHolder.show(200);
-}
+};

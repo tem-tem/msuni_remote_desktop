@@ -15,7 +15,7 @@ class Admin::MsuFilesController < ApplicationController
       redirect_to [:admin, @discipline, anchor: 'nav-books']
     else
       flash.now[:danger] = @file.errors.full_messages.to_sentence
-      params[:filetype] = @file.filetype
+      params[:msu_filetype] = @file.msu_filetype
       render :new
     end
   end
@@ -23,7 +23,7 @@ class Admin::MsuFilesController < ApplicationController
   def edit
     @file = MsuFile.find(params[:id])
     @discipline = @file.msu_discipline
-    params[:filetype] = @file.filetype
+    params[:filetype] = @file.msu_filetype
     respond_to do |f|
       f.js
     end
@@ -32,7 +32,6 @@ class Admin::MsuFilesController < ApplicationController
   def update
     @file = MsuFile.find(params[:id])
     @discipline = @file.msu_discipline
-    params[:filetype] = @file.filetype
     @file.update(file_params)
 
     if @file.save

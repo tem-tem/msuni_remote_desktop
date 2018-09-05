@@ -11,7 +11,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <%= yield :head %>
   </head>
 
@@ -42,7 +41,6 @@
       });
     </script>
 
-    <%= yield :page_scripts %>
   <% else %>
     <%= render partial: '/logos' %>
     <div class="make-it-sticky">
@@ -52,5 +50,7 @@
     </div>
     <%= yield %>
   <% end %>
+    <%= yield :page_scripts %>
+
   </body>
 </html>

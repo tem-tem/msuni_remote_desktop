@@ -77,11 +77,11 @@
               aria-controls="nav-books"
               aria-selected="true">
                 <small>
-                  Книги
+                  Файлы
                 </small>
-              <% if @discipline.msu_files.where(filetype: 'book').any? %>
+              <% if @discipline.msu_files.any? %>
                 <span class="ml-2 badge badge-pill badge-secondary">
-                  <%= @discipline.msu_files.where(filetype: 'book').count%>
+                  <%= @discipline.msu_files.count%>
                 </span>
               <% end %>
             </a>
@@ -146,28 +146,33 @@
              role="tabpanel"
              aria-labelledby="nav-books-tab">
 
-          <div class="my-3 d-flex justify-content-end"
+          <div class="my-3 d-flex justify-content-between"
                role="group"
                aria-label="Lectures navigation">
-            <%= link_to [:new, :admin, @discipline, :msu_file, filetype: 'book'],
+            <div>
+              <% if @discipline.msu_files.count > 3 %>
+                <%= render partial: 'admin/msu_files/filter', locals: {files: @discipline.msu_files} %>
+              <% end %>
+            </div>
+            <%= link_to [:new, :admin, @discipline, :msu_file],
                       class: "btn btn-outline-primary btn-sm btn-primary-icon btn-icon-wrap",
-                      "data-toggle": "modal",
-                      "data-target": "#itemModal",
                       remote: true do %>
                 <%= octicon "plus",
                 width: 16,
                 height: 16,
                 class: "btn-icon mr-1 my-auto",
                   "aria-label": "Открыть" %>
-                Добавить книгу
-            <% end %>
-          </div>
+                Добавить файл
+              <% end %>
+            </div>
 
-          <% if @discipline.msu_files.where(filetype: 'book').any? %>
-            <% @discipline.msu_files.where(filetype: 'book').each_with_index do |book, index| %>
-              <%= render partial: 'admin/msu_files/book', locals: {book: book, index: index + 1} %>
-            <% end %>
-          <% end %>
+            <div id="files-wrap">
+              <% if @discipline.msu_files.any? %>
+                <% @discipline.msu_files.each_with_index do |file, index| %>
+                  <%= render partial: 'admin/msu_files/file', locals: {msu_file: file, index: index + 1} %>
+                <% end %>
+              <% end %>
+            </div>
 
         </div>
 
@@ -245,7 +250,6 @@
       <!-- END Nav content -->
 
   </div>
-
   <!-- New Lecture Modal -->
   <div class="modal fade bring-to-front" id="itemModal"
        tabindex="-1"
@@ -269,6 +273,7 @@
   <!-- END New Lecture Modal -->
 
 <script>
+
   var url = document.location.toString();
   if (url.match('#')) {
       $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');

@@ -12,7 +12,8 @@
  *
  * require_tree .
  * require_self
- * require jquery-ui
+ * require jquery-ui/autocomplete
+ * require jquery-ui/draggable
  */
 
 @import "simplemde.min";
@@ -577,9 +578,19 @@ pre{
 .book-title {
   margin-bottom: 10px;
 }
-.book-bottons {
-  justify-content: flex-end;
+
+
+.file-category {
+  padding-left: 2em;
+  border: 1px solid #dee2e6;
+  color: #6b6b6b;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+.book-footer {
   display: flex;
+  justify-content: space-between;
 }
 
 .book-botton {
@@ -777,6 +788,8 @@ border-bottom: 1px solid #e9ecef
   max-height: calc(100vh - 64px);
   padding: 20px;
 }
+
+
 
 .card-columns {
   @include media-breakpoint-only(xl) {

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
+    resources :msu_filetypes, only: [:create]
+
     resources :msu_disciplines do
       resources :msu_lectures
       resources :msu_files

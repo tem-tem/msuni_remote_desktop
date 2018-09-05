@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-end"
+    role="group"
+    aria-label="Videos navigation">
+  <button class="btn btn-sm btn-outline-primary dropdown-toggle"
+          id="dropdownMenu2"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+    Фильтр
+  </button>
+
+  <div class="dropdown-menu dropdown-menu-left"
+      aria-labelledby="dropdownMenu2"
+      style="box-shadow: 0 10px 50px rgba(0,0,0,0.2)">
+    <h6 class="dropdown-header border-bottom mb-2">Выберите категорию</h6>
+    <% ftps = files.map{|f| f.filetype } %>
+    <% ftps.uniq.each do |f| %>
+      <div class="dropdown-item filetype-filter" value=".<%= f %>">
+        <%= f %>
+      </div>
+    <% end %>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-item filetype-filter" value=".file-with-filetype">
+      Убрать фильтр
+    </div>
+  </div>
+</div>
+
+<% content_for :page_scripts do %>
+  <script>
+    $(".filetype-filter").on("click", function(e) {
+      t = $(e.target).attr("value");
+      $('.file-with-filetype').css("display", "none");
+      $(t).css("display", "flex");
+    });
+  </script>
+<% end %>

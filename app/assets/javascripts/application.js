@@ -17,7 +17,8 @@
 //= require simplemde.min
 //= require marked
 //= require jquery3
-//= require jquery-ui
+//= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/draggable
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -34,6 +35,7 @@
 //   });
 // }
 
+var autocomplete_list = [];
 
 function copyImageLink(id) {
   var copyText = $('#' + id);

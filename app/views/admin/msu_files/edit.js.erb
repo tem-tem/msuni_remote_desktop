@@ -1,7 +1,7 @@
 $('#itemModal').modal();
 $('#itemModalLabel').html('Редактирование книги');
 $('#itemModalBody')
-  .html('<%= j render "admin/msu_files/#{params[:filetype]}_form" %>');
+  .html('<%= j render "admin/msu_files/form" %>');
 
 var error = "<%= j flash[:danger] %>",
     errorHolder = $("#errors");
